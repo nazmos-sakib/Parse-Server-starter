@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Android_Parse_basic_tutorial</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+    <string name="back4app_app_id">ZsJPWKFN4osyIYrBxC3KEznxOqhIlWjIpPfqjZLQ</string>
+    <string name="back4app_client_key">4xqngpr3QzOgRnnh6WZ9tEBQWwXxjuIayZiEJzMl</string>
+</resources>
