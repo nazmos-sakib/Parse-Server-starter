@@ -233,3 +233,19 @@ user.signUpInBackground(new SignUpCallback() {
     }
 });
 ```
+
+## Login
+
+```
+ParseUser.logInInBackground("userName", "passWord", new LogInCallback() {
+    @Override
+    public void done(ParseUser user, ParseException e) {
+	if (user != null){
+	    Toast.makeText(getApplicationContext(),"login successful", Toast.LENGTH_SHORT).show();
+	    startActivity();
+	} else {
+	    Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_SHORT).show();
+	}
+    }
+});
+```
