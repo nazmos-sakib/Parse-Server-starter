@@ -249,3 +249,16 @@ ParseUser.logInInBackground("userName", "passWord", new LogInCallback() {
     }
 });
 ```
+
+## Check login
+```
+ParseUser currentUser = ParseUser.getCurrentUser();
+if (currentUser != null) {
+    // do stuff with the user
+
+} else {
+    //user not logged in
+    // show the signup or login screen
+
+}
+```
