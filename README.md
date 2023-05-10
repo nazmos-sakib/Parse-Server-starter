@@ -215,6 +215,42 @@ query1.findInBackground(new FindCallback<ParseObject>() {
 });
 ```
 
+## File or Image upload
+
+```
+ParseObject var = new ParseObject("tableNmae");
+
+//location upload
+ParseGeoPoint pGeoPoint = new ParseGeoPoint( m.getPosition().getLatitude(), m.getPosition().getLongitude());
+var.put("location", pGeoPoint);
+
+//file upload----------
+//before uploading the file or the image needs to converted into "byte array"
+byte[] data = null;
+//chosing image from image galary
+Bitmap bitmap = ((BitmapDrawable) chosenImageDialogBOx.getDrawable()).getBitmap();
+ByteArrayOutputStream baos = new ByteArrayOutputStream();
+bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+//image to byte array corvertion for uploading
+data = baos.toByteArray();
+ParseFile parseFile = new ParseFile("image-", data);
+var.put("image", parseFile)
+
+fountainAddToServer.saveInBackground(new SaveCallback() { //upload file to the parse server
+    //using this call back function will return extra information like if it failed or succeed to upload the file
+    @Override
+    public void done(ParseException e) {
+        if (e==null) { // no error occurred
+           //upload successful
+        } else {
+            e.getMessage();
+            e.getStackTrace();
+        }
+    }
+});
+```
+                
+
 ## Signup parse user
 
 ```
