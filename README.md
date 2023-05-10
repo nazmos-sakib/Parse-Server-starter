@@ -215,7 +215,7 @@ query1.findInBackground(new FindCallback<ParseObject>() {
 });
 ```
 
-## File or Image upload
+## File or Image and GeoPoint upload
 
 ```
 ParseObject var = new ParseObject("tableNmae");
@@ -246,6 +246,42 @@ fountainAddToServer.saveInBackground(new SaveCallback() { //upload file to the p
             e.getMessage();
             e.getStackTrace();
         }
+    }
+});
+```
+
+##  Getting Image and GeoPoint from server
+```
+ParseQuery<ParseObject> query = new ParseQuery<>("fountainLocation");
+query.whereWithinKilometers("location",new ParseGeoPoint(location.getLatitude(),location.getLongitude()),30);
+query.findInBackground((objects, e) -> {
+    if (e==null){
+        Log.d(TAG, "getNearByFountainLocation: ->"+objects.size());
+        for (ParseObject obj: objects){
+
+
+            ParseFile a = obj.getParseFile("image");
+            a.getDataInBackground(new GetDataCallback() {
+                @Override
+                public void done(byte[] data, ParseException e) {
+                    if (e == null) {
+                        // The image data was successfully retrieved
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                        // Use the bitmap as needed
+                        Drawable drawable = new BitmapDrawable(getResources(), bitmap);
+
+                        m.setImage(drawable);
+
+                    } else {
+                        // There was an error retrieving the image data
+                        Log.e(TAG, "Error loading image data: " + e.getMessage());
+                    }
+                }
+            });
+
+        } //end of for
+    } else {
+        Toast.makeText(getContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
     }
 });
 ```
