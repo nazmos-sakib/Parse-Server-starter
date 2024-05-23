@@ -49,6 +49,8 @@
 	    public void onCreate() {
 		super.onCreate();
 
+        //Enable local datastore
+        Parse.enableLocalDatastore(this);
 		//Initializing connection at onCreate
 		Parse.initialize(new Parse.Configuration.Builder(getApplicationContext())
 			.applicationId(getString(R.string.back4app_app_id))
