@@ -6,18 +6,20 @@
 - 1.Create a new app in Back4App
 -	2.Get App Keys under ***```App Settings-> Security & Keys```***
 -	3.Parse Android SDK Installation
-	-	go to the ```build.gradle (Module:app)```
+	-	go to the ```build.gradle.kts (Module:app)```
     ```
     dependencies {
       // code...
       // Don't forget to change the line below with the latest version of Parse SDK for Android
       implementation "com.github.parse-community.Parse-SDK-Android:parse:4.2.0"
     }
-
+    ```
+    - add _maven_ in ```settings.gradle.kts (Module:app)```
+    ```
     repositories {
       mavenCentral()
       jcenter()
-      maven { url 'https://jitpack.io' }
+       maven { url = uri("https://jitpack.io") }
     }
     ```
 	
